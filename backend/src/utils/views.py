@@ -27,3 +27,14 @@ def schedule(item):
 def delivery(item):
     return {'id': item.id, 'run_id': item.run_id, 'recipient': item.recipient,
             'state': item.state, 'detail': item.detail, 'created_at': iso(item.created_at)}
+
+
+def pump_plan(item, detail=False):
+    data = {'id': item.id, 'name': item.name, 'generation': item.generation,
+            'rule_revision': item.rule_revision, 'source_run_id': item.source_run_id,
+            'status': item.status, 'is_active': item.is_active, 'author': item.author,
+            'attempt': item.attempt, 'error': item.error,
+            'created_at': iso(item.created_at), 'finished_at': iso(item.finished_at)}
+    if detail:
+        data.update(inputs=item.inputs, result=item.result)
+    return data

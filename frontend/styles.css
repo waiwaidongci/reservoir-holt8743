@@ -89,6 +89,10 @@ input[type="file"] { max-width:100%; }
 .check { display:flex; align-items:center; gap:.55rem; }
 textarea { resize:vertical; }
 .form-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,192px),1fr)); gap:.8rem; }
+.pump-grid { display:grid; gap:.7rem; }
+.pump-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,128px),1fr)); gap:.6rem; align-items:end; padding:.7rem; border:1px solid var(--line); background:var(--panel); }
+.pump-row .field { gap:.25rem; }
+.pump-row .field > span { font-size:.82rem; font-weight:650; }
 .feedback { color:light-dark(oklch(43% .17 27),oklch(75% .14 32)); font-weight:650; }
 .feedback:empty { display:none; }
 .dictionary { margin-bottom:0; }

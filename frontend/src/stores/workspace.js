@@ -18,5 +18,10 @@ export const workspace = {
   deliveries: () => call('/deliveries'),
   schedule: data => call('/schedules', data),
   disable: id => call(`/schedules/${id}/disable`, {}),
+  pumpPlans: () => call('/pump-plans'),
+  activePumpPlan: () => call('/pump-plans/active'),
+  startPumpPlan: data => call('/pump-plans', data),
+  getPumpPlan: id => call(`/pump-plans/${id}`),
+  activatePumpPlan: id => call(`/pump-plans/${id}/activate`, {}),
   download: (path, filename) => saveFile(path, session.token, filename),
 };

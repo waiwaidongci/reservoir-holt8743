@@ -7,6 +7,7 @@ from src.domain.analysis import analyze
 from src.domain.spec import SPEC
 from src.models.jobs import Delivery, Run, Schedule
 from src.models.source import Dataset
+from src.services import pump as pump_service
 from src.services.audit import record
 from src.utils.exports import write_report
 from src.utils.time import now
@@ -38,6 +39,16 @@ def materialize_due():
                 item.enabled = False
             db.add(Run(dataset_id=dataset_id, schedule_id=item.id, scheduled_at=due,
                        name=item.name, params=params, author=item.author))
+
+
+def pump_cycle():
+    """在单事务内领取并完成一个抽水排班计算；无待处理任务时返回 False。"""
+    with Session.begin() as db:
+        plan = pump_service.claim_pump(db)
+        if plan is None:
+            return False
+        pump_service.finish_pump(db, plan)
+    return True
 
 
 def claim():

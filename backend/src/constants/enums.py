@@ -15,3 +15,10 @@ class Review(StrEnum):
     PENDING = 'pending'
     ACCEPTED = 'accepted'
     RETURNED = 'returned'
+
+class PumpStatus(StrEnum):
+    QUEUED = 'queued'
+    RUNNING = 'running'
+    COMPLETE = 'complete'
+    FAILED = 'failed'
+    SUPERSEDED = 'superseded'
